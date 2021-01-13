@@ -1,0 +1,20 @@
+name: offset
+version: '0.1.0.0'
+category: Data
+author: chendianbuji
+maintainer: chendianbuji@gmail.com
+copyright: 2021 chendianbuji
+license: BSD3
+github: ukari/offset
+extra-source-files:
+- README.md
+- LICENSE
+dependencies:
+- base >=4.7 && <5
+library:
+  source-dirs: src
+  dependencies:
+  - template-haskell
+  exposed-modules:
+  - Foreign.Storable.Offset
+  
