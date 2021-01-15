@@ -26,13 +26,24 @@ data ShaderInputVertex = ShaderInputVertex
 makeOffset ''ShaderInputVertex
 ```
 
+### Usage
 ```
-λ> offsetof (undefined::ShaderInputVertex) (Normal 0)
+λ> offsetof (undefined::ShaderInputVertex) (0::Int)
 0
-λ> offsetof (undefined::ShaderInputVertex) (Normal 1)
+λ> offsetof (undefined::ShaderInputVertex) (1::Int)
 8
-λ> offsetof (undefined::ShaderInputVertex) (Record "inPosition")
+λ> offsetof (undefined::ShaderInputVertex) ("inPosition"::String)
 0
-λ> offsetof (undefined::ShaderInputVertex) (Record "inColor")
+λ> offsetof (undefined::ShaderInputVertex) ("inColor"::String)
 8
+```
+
+``` hs
+offsetAt0 = offsetof (undefined::ShaderInputVertex) 0
+
+offsetAt1 = offsetof (undefined::ShaderInputVertex) 1
+
+offsetInPositon = offsetof (undefined::ShaderInputVertex) "inPosition"
+
+offsetInColor = offsetof (undefined::ShaderInputVertex) "inColor"
 ```

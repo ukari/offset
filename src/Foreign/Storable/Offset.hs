@@ -1,20 +1,19 @@
+{-# LANGUAGE MonoLocalBinds #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE QuasiQuotes #-}
 
 module Foreign.Storable.Offset
   ( makeOffset
   , Offset (..)
-  , module Foreign.Storable.Offset.OffsetSelect
   ) where
 
 import Language.Haskell.TH
 
 import Foreign.Storable.Offset.Internal.OffsetTH (offsetOf)
-import Foreign.Storable.Offset.OffsetSelect (OffsetSelect (..))
+import Foreign.Storable.Offset.Internal.OffsetSelectable (OffsetSelectable (..))
 
 class Offset a where
-  offsetof :: Num b => a -> OffsetSelect -> b
+  offsetof :: (OffsetSelectable b, Num c) => a -> b -> c
 
 -- https://downloads.haskell.org/~ghc/7.0.2/docs/html/users_guide/template-haskell.html
 -- > A name can be quoted with either one or two prefix single quotes:
@@ -28,5 +27,5 @@ makeOffset name = do
   let func = offsetOf name :: Q Exp
   let i = conT name
   [d|instance Offset $(i) where
-      offsetof _ = $(func)
+      offsetof _ = $(func) . select
     |]

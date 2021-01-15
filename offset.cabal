@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a94e8e30b76546a3ca383a6a35bb50df38166005b6848af75431205e765a8c53
+-- hash: b0aa66c0a3050d4a4ed845c2e9bb98caf1176ccf5a98abe0edc999ba3d362095
 
 name:           offset
-version:        0.1.0.0
+version:        0.1.1.0
 category:       Data
 homepage:       https://github.com/ukari/offset#readme
 bug-reports:    https://github.com/ukari/offset/issues
@@ -29,8 +29,9 @@ library
   exposed-modules:
       Foreign.Storable.Offset
   other-modules:
+      Foreign.Storable.Offset.Internal.OffsetSelect
+      Foreign.Storable.Offset.Internal.OffsetSelectable
       Foreign.Storable.Offset.Internal.OffsetTH
-      Foreign.Storable.Offset.OffsetSelect
       Paths_offset
   hs-source-dirs:
       src
